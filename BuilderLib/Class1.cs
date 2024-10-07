@@ -1,11 +1,18 @@
-﻿namespace BuilderLib
+﻿using System;
+
+namespace BuilderLib
 {
-    public class GameCharacter
+    public class GameCharacter : ICloneable
     {
         public string Name { get; set; }
         public string Class { get; set; }
         public string Weapon { get; set; }
         public string Armor { get; set; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
 
         public override string ToString()
         {
@@ -16,6 +23,7 @@
     public abstract class CharacterBuilder
     {
         protected GameCharacter character = new GameCharacter();
+
         public abstract void BuildName();
         public abstract void BuildClass();
         public abstract void BuildWeapon();
@@ -73,4 +81,5 @@
         }
     }
 }
+
 
